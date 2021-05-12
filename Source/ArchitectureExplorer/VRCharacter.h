@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "HandController.h"
 #include "VRCharacter.generated.h"
 
 UCLASS()
@@ -35,6 +36,12 @@ private:
 	void StartFade(float FromAlpha, float ToAlpha);
 	void FBMove(float AxisValue);
 	void LRMove(float AxisValue);
+
+	void GripLeft() { LeftController->Grip(); }
+	void ReleaseLeft() { LeftController->Release(); }
+	void GripRight() { RightController->Grip(); }
+	void ReleaseRight() { RightController->Release(); }
+
 	void UpdateBlinkers();
 	void UpdateSpline(const TArray<FVector>& Path);
 	void DrawTeleportPath(const TArray<FVector>& Path);
@@ -49,10 +56,10 @@ private:
 	class UCameraComponent* Camera;
 
 	UPROPERTY()
-	class AHandController* LeftController;
+	AHandController* LeftController;
 	
 	UPROPERTY()
-	class AHandController* RightController;
+	AHandController* RightController;
 	UPROPERTY()
 	class UPostProcessComponent* PostProcessComponent;
 
